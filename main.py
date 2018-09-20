@@ -5,11 +5,16 @@
 # @File: getscnauthor.py
 import os
 import subprocess
+import sys
 from tempfile import TemporaryFile, NamedTemporaryFile
 
 if __name__ == '__main__':
     filePath = 'Author.txt'
     cmd = r'svn log --quiet  '
+    email = 'gszh.cn'
+
+    if len(sys.argv[1].strip()) > 0:
+        email = sys.argv[1].strip()
     p = subprocess.Popen(
         cmd,
         stdout=subprocess.PIPE,
@@ -32,9 +37,9 @@ if __name__ == '__main__':
                 authorList.append(line)
 
     with open(filePath, 'w+') as f:
-        if len(authorList)>0:
+        if len(authorList) > 0:
             for line in authorList:
-                f.write('{0} = {0} <{0}@{1}>{2}'.format(line, 'gszh.cn', '\n'))
+                f.write('{0} = {0} <{0}@{1}>{2}'.format(line, email, '\n'))
         else:
             f.write('当前目录非svn根目录（本程序请放在.svn目录下）！')
     # # 用文件描述符来操作临时文件
