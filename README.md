@@ -10,3 +10,7 @@ lihe = lihe<×××@163.com>
 邮箱后缀可以通过 应用程序追加参数，默认后缀为gszh.cn
 例如在cmd下执行如下命令：
  getSvnAuthor.exe  163.com
+ 
+ 
+打包命令:
+pyinstaller -F .\main.py -n getSvnAuthor
