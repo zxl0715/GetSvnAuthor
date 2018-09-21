@@ -13,8 +13,9 @@ if __name__ == '__main__':
     cmd = r'svn log --quiet  '
     email = 'gszh.cn'
 
-    if len(sys.argv[1].strip()) > 0:
-        email = sys.argv[1].strip()
+    if len(sys.argv) > 1 :
+        if len(sys.argv[1].strip()) > 0:
+            email = sys.argv[1].strip()
     p = subprocess.Popen(
         cmd,
         stdout=subprocess.PIPE,
@@ -41,7 +42,7 @@ if __name__ == '__main__':
             for line in authorList:
                 f.write('{0} = {0} <{0}@{1}>{2}'.format(line, email, '\n'))
         else:
-            f.write('当前目录非svn根目录（本程序请放在.svn目录下）！')
+            f.write('当前目录非svn根目录（1、本程序请放在.svn目录下2、网络出现故障）！')
     # # 用文件描述符来操作临时文件
     # f = TemporaryFile()
     # f.write(cmdResutl.)
